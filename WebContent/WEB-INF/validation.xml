@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+	<!--
+		This is a minimal Validator form file with a couple of examples.
+	-->
+
+	<global>
+
+		<!--
+			An example global constant <constant>
+			<constant-name>postalCode</constant-name>
+			<constant-value>^\d{5}\d*$</constant-value> </constant> end example
+		-->
+
+	</global>
+
+	<formset>
+
+		<!-- An example form -->
+
+		<form name="loginfrm">
+			<field property="userinfo.userId" depends="required">
+							<msg name="required" key="loginfrm.userinfo.userId.required" />
+			</field>
+			<field property="userinfo.password" depends="required">
+				<msg name="required" key="loginfrm.userinfo.password.required" />
+				<arg key="loginfrm.userinfo.password"/>
+			</field>
+		</form>
+	</formset>
+	
+	<formset>
+
+		<form name="regfrm">
+		
+			<field property="userName" depends="required,mask">
+				<arg key="regfrm.userName" />
+				<msg name="required" key="regfrm.userName.required" />
+				<msg name="mask" key="regfrm.userName.mask"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[a-zA-Z]*$</var-value>
+				</var>
+				
+
+			</field>
+			<field property="userId" depends="required,mask,minlength,maxlength">
+				<arg key="regfrm.userId"/>
+				<msg name="required" key="regfrm.userId.required" />
+				<msg name="mask" key="regfrm.userId.mask"/>
+				<arg0 name="minlength" key="${var:minlength}" resource="false"/>
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+       			<var>
+       			 <var-name>minlength</var-name>
+       			 <var-value>4</var-value>
+       			 </var>
+       			 <var>
+       			 <var-name>maxlength</var-name>
+       			 <var-value>10</var-value>
+       			 </var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z]*$</var-value>
+				</var>
+			</field>
+			<field property="password" depends="required,minlength,maxlength">
+				<msg name="required" key="regfrm.password.required" />
+				<msg name="minlength" key="regfrm.password.min" />
+				<msg name="maxlength" key="regfrm.password.max" />
+				<arg key="regfrm.password"/>
+				<arg0 name="minlength" key="${var:minlength}" resource="false"/>
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+       			<var>
+       			 <var-name>minlength</var-name>
+       			 <var-value>6</var-value>
+       			 </var>
+       			 <var>
+       			 <var-name>maxlength</var-name>
+       			 <var-value>15</var-value>
+       			 </var>
+			</field>		
+			<field property="accountnumber" depends="required,minlength,maxlength">
+				<arg key="regfrm.accountnumber" />
+				<msg name="required" key="regfrm.accountnumber.required" />
+				<msg name="minlength" key="regfrm.accountnumber.min"/>
+				<msg name="maxlength" key="regfrm.accountnumber.max"/>
+				<arg0 name="minlength" key="${var:minlength}" resource="false"/>
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+       			<var>
+       			 <var-name>minlength</var-name>
+       			 <var-value>4</var-value>
+       			 </var>
+       			 <var>
+       			 <var-name>maxlength</var-name>
+       			 <var-value>6</var-value>
+       			 </var>
+			</field>
+			
+			<field property="gender" depends="required">
+				<msg name="required" key="regfrm.gender.required" />
+
+			</field>
+			<field property="email" depends="required,email">
+				<arg key="regfrm.email" />
+				<msg name="required" key="regfrm.email.required" />
+				<msg name="email" key="regfrm.email.mail" />
+				
+
+			</field>
+			
+			<field property="mobilenumber" depends="required,minlength,maxlength">
+				<msg name="required" key="regfrm.mobilenumber.required" />
+				<arg0 name="minlength" key="${var:minlength}" resource="false"/>
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+				<msg name="minlength" key="regfrm.mobilenumber.minmax" />
+				<msg name="maxlength" key="regfrm.mobilenumber.minmax" />
+       			<var>
+       			 <var-name>minlength</var-name>
+       			 <var-value>10</var-value>
+       			 </var>
+       			 <var>
+       			 <var-name>maxlength</var-name>
+       			 <var-value>10</var-value>
+       			 </var>
+				
+				<arg key="regfrm.mobilenumber"/>
+            </field>
+			<field property="location" depends="required">
+			<arg key="regfrm.location"/>
+			<msg name="required" key="regfrm.location.required"/>
+			</field>
+			
+		</form>
+
+	</formset>
+	<!--
+		An example formset for another locale <formset language="fr">
+
+		<constant> <constant-name>postalCode</constant-name>
+		<constant-value>^[0-9a-zA-Z]*$</constant-value> </constant> <form
+		name="logonForm"> <field property="username" depends="required"> <arg
+		key="logonForm.username"/> </field> <field property="password"
+		depends="required,mask"> <arg key="logonForm.password"/> <var>
+		<var-name>mask</var-name> <var-value>^[0-9a-zA-Z]*$</var-value> </var>
+		</field> </form> </formset>
+	-->
+
+</form-validation>

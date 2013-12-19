@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.pojo.PixAccount" table="Pix_Account">
+	
+		<id name="accountNumber" type="int" column="account_number">
+			<generator class="increment">
+			<param name="intial_value">2010</param>	
+			</generator>
+		</id>
+		<property name="accountName">
+		<column name="account_name" />
+		</property>
+		<property name="balance">
+		<column name="balance" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+
+<hibernate-mapping>
+
+		<class name = "com.pojo.PixTransactions" table="Pix_Transactions">
+		
+		<id name="transactionId" type="int">
+			<column name="transaction_Id" />
+			<generator class="increment" />
+		</id>
+		
+			<many-to-one name="photoInfo" column="photo_id" class="com.pojo.PixPhotoInfo" lazy="false"/>
+			<many-to-one name="invoice" column="inv_id" class="com.pojo.PixInvoice" lazy="false"/>
+			
+		</class>
+</hibernate-mapping>

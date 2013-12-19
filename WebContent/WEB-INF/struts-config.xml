@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="loginfrm" type="com.frm.LoginCheck"></form-bean>
+		<form-bean name="regfrm" type="com.frm.NewUser"></form-bean>		
+		<form-bean name="photoInfofrm" type="com.action.PhotoinfoAction"></form-bean>		
+		<form-bean name="StrutsUploadFrm" type="com.pixphotofrm.StrutsUploadFrm"></form-bean>
+	</form-beans>
+
+
+	<action-mappings>
+		
+			<action path="/login" name="loginfrm" type="com.action.LoginAction"
+			scope="session" input="/login.jsp">
+			<forward name="success" path="/index.jsp"></forward>
+			<forward name="admin" path="/AdminLogin.jsp"></forward>
+			<forward name="failure" path="/login.jsp"></forward>
+			</action>
+			
+			<action path="/logout"  type="com.action.LogoutAction" scope="session">
+			<forward name="logout" path="/index.jsp"></forward>			
+			</action>
+			
+			<action path="/AdminUserPix"  type="com.action.AdminUserPix" scope="session">
+			<forward name="Sucess" path="/AdminLogin.jsp"></forward>			
+			</action>
+			
+			<action path="/CheckBalance"  type="com.action.CheckBalanceAction" scope="session">
+			<forward name="Sucess" path="/SuccessPayment.jsp"></forward>
+			<forward name="Failure" path="/UnSuccessPayment.jsp"></forward>			
+			</action>
+			
+			
+			<action path="/photo"  type="com.action.PhotoAction" scope="session">
+			<forward name="photos" path="/WildLife.jsp"></forward>
+			
+			</action>
+			<action path="/buy"  type="com.action.PixTransAction" scope="session">
+			<forward name="buy" path="/PixBilling.jsp"></forward>
+			</action>
+			
+			<action path="/maxphoto"  type="com.action.MaxDownloadAction">
+			<forward name="photos" path="/Welcome.jsp"/>
+			
+			</action>
+			<action path="/history"  type="com.action.UserHistory">
+			<forward name="invoice" path="/History.jsp"/>
+			
+			</action>
+			
+			<action path="/userpix"  type="com.action.UserPixAction">
+			<forward name="photos" path="/Gallery.jsp"></forward>
+			
+			</action>
+			
+			<action path="/uploadPhoto" name="photoInfofrm" type="com.action.PhotoinfoAction"
+			scope="session" input="/login.jsp">
+			<forward name="success" path="/uploadPhoto.jsp"></forward>			
+			<forward name="failure" path="/uploadPhoto.jsp"></forward>
+			</action>
+			
+		<action path="/register" name="regfrm" type="com.action.RegisterAction"
+			scope="session" input="/Registration.jsp">
+			<forward name="ok" path="/RegistrationSuccess.jsp"></forward>
+			<forward name="failure" path="/Registration.jsp"></forward>
+		</action>
+		
+		<action path="/fileUpload" name="StrutsUploadFrm" type="com.pixphotoaction.StrutsUploadAction"
+			scope="session" input="/uploadPhoto.jsp">
+			<forward name="success" path="/uploadPhoto.jsp"></forward>
+		</action>
+		  	</action-mappings>
+
+	<message-resources parameter="com.resources.ss" null="false"></message-resources>
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>
+

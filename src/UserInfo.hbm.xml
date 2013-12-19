@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.pojo.PixUserInfo" table="Pix_UserInfo">
+		<id name="userId" column="user_Id" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+
+		<property name="userName">
+			<column name="user_Name" />
+		</property>
+		<property name="password">
+			<column name="password" />
+		</property>
+		<property name="mobileNumber" type="long">
+			<column name="mobile_number" />
+		</property>
+		<property name="email" type ="double">
+			<column name="email" />
+		</property>
+		<property name="location">
+			<column name="location" />
+		</property>
+
+		<property name="gender">
+			<column name="gender" />
+		</property>
+		<property name="accountNumber">
+			<column name="account_number" />
+		</property>
+		
+		
+       <bag name="photos">
+            <key column="user_id"/>
+            <one-to-many class="com.pojo.PixPhotoInfo"/> <!--  cascade , inverse  -->
+       </bag>
+       
+        <bag name="invlst">
+            <key column="user_id"/>
+            <one-to-many class="com.pojo.PixInvoice"/>
+       </bag>
+       
+	</class>
+
+
+</hibernate-mapping>
+
+
+
